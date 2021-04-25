@@ -107,7 +107,7 @@ ___
         ![GoDaddy DNS](/repo_screenshoots/step_2/godaddy_dns_part_1.png)
   * Find **Nameservers** section and click on **change**, set nameserver type **Custom** and Add Nameserves one-by-one you copied
         ![GoDaddy DNS](/repo_screenshoots/step_2/godaddy_dns_part_2.png)
-  * This will take some time to by Domain Providers to update your domain servers
+  * Your Domain Provider update your domain servers but it will take some time.
 ___
 ___
 
