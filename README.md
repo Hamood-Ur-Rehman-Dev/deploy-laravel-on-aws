@@ -3,31 +3,28 @@
 
 ***Deployment | Domain Configuration | SSL Certificate (HTTPs)***
 
-> ## Step 1: Deployment
-... Step 1.1: Create Elastic Beanstalk Application
-    - Go to **Services** > **Elastic Beanstalk**
-    >> - Create **New Application** [ add basic information and click **configure more options** ]
-    >> - In Configure More Options, **EDIT Software** Section and set **Document Root** ***"/public"***
-    >> - In Configure More Options, **EDIT Database** Section and set all required fields, Note down **UserName** & **Password** for *Database* we need this later.
-    >> 
-    >> Above Steps will create Application along with one **EC2 Instance** and **RDS Database**
-    >>
-    >>
-    >> ### Step 1.2: Create Key Pair & Bind With Elastic Beanstalk  Application
-    >> - Go to **Services** > **EC2**
-    >> - Select **Network & Security** > **Key Pair** from *Side Bar*
-    >> - Create **New Key Pair**, this will automatically download key on your local machine.
-    >> - Go to folder where ***YOUR_KEY.pem*** is located. **Open Terminal On Same Location** and write 
-    >>   - *``chmod 400 YOUR_KEY.pem``*
-    >> - Now again Go Back To **Services** > **Elastic Beanstalk**
-    >> - Go To **Select Your Environment** and from side bar **Click Configuration**
-    >> - In **Elastic Beanstalk** > **Environments** > **YOUR_ENV_NAME** > **Configuration EDIT SECURITY** Section
-    >> - Under Security Edit section and **Fill EC2 key pair** field with newly created Key **YOUR_KEY** and click apply
-    >> 
-    >> Above Steps will create **KEY** that allow you to access your **EC2 instance** using **ssh** and now this key is bind with **Elastic Beanstalk Environment**
-    >>
-    >>
-    >> ### Step 1.3: Configure RDS (Database)
+## Step 1: Deployment
+Step 1.1: Create Elastic Beanstalk Application
+Go to **Services** > **Elastic Beanstalk**
+Create **New Application** [ add basic information and click **configure more options** ]
+In Configure More Options, **EDIT Software** Section and set **Document Root** ***"/public"***
+In Configure More Options, **EDIT Database** Section and set all required fields, Note down **UserName** & **Password** for *Database* we need this later.
+Above Steps will create Application along with one **EC2 Instance** and **RDS Database**
+
+Step 1.2: Create Key Pair & Bind With Elastic Beanstalk  Application
+Go to **Services** > **EC2**
+Select **Network & Security** > **Key Pair** from *Side Bar*
+Create **New Key Pair**, this will automatically download key on your local machine.
+Go to folder where ***YOUR_KEY.pem*** is located. **Open Terminal On Same Location** and write 
+*``chmod 400 YOUR_KEY.pem``*
+Now again Go Back To **Services** > **Elastic Beanstalk**
+Go To **Select Your Environment** and from side bar **Click Configuration**
+In **Elastic Beanstalk** > **Environments** > **YOUR_ENV_NAME** > **Configuration EDIT SECURITY** Section
+Under Security Edit section and **Fill EC2 key pair** field with newly created Key **YOUR_KEY** and click apply
+ 
+Above Steps will create **KEY** that allow you to access your **EC2 instance** using **ssh** and now this key is bind with **Elastic Beanstalk Environment**
+
+### Step 1.3: Configure RDS (Database)
     >> - Go to **Services** > **RDS**
     >> - Click on **DB Instances** than click on **YOUR_RDS_NAME**
     >> - In **RDS** > **Databases** > **YOUR_RDS_NAME** go to **Connectivity & Security** Tab and under **Security** section click on **link under VPC security groups**
