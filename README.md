@@ -4,7 +4,7 @@
 ***Deployment | Domain Configuration | SSL Certificate (HTTPs)***
 
 > ## Step 1: Deployment
-    ### Step 1.1: Create Elastic Beanstalk Application
+...Step 1.1: Create Elastic Beanstalk Application
     - Go to **Services** > **Elastic Beanstalk**
     >> - Create **New Application** [ add basic information and click **configure more options** ]
     >> - In Configure More Options, **EDIT Software** Section and set **Document Root** ***"/public"***
