@@ -128,6 +128,8 @@ ___
     * Next Validation Page, Wait 5min until your Validation Status change to **ISSUED** see current status is **Pending validation**.
         ![Certificate Validation](/repo_screenshoots/step_3/certificate_validation_page.png)
         * Copy **CNAME** **Name** *(WITHOUT DOMAIN_NAME at the end)* and **Value** that look like **f2793....** **_7ca09....** respectively we need to create another **CNAME record** in **Route53** that require this.
+    * After status changed it will look something like this
+      ![Certificate Verified](/repo_screenshoots/step_3/certificate-cleared.png)
   
 * ***Step 2.2: Configure Route53 for HTTPs***
   * Goto **Services** > **Route53**.
@@ -142,9 +144,16 @@ ___
     ![Load Balancer Step 1](/repo_screenshoots/step_3/load_balancer_step_1.png)
     ![Load Balancer Step 1_1](/repo_screenshoots/step_3/load_balancer_step_1_1.png)
   * **Step 2.3.2 Configure Security Settings:** From drop-down of **Certificate name** select **Your Certificate** you created in last step.
+    ![Load Balancer Step 2](/repo_screenshoots/step_3/load_balancer_step_2.png)
   * **Step 2.3.3 Configure Security Groups:** Select **application security** groups.
+    ![Load Balancer Step 3](/repo_screenshoots/step_3/load_balancer_step_3.png)
   * **Step 2.3.4 Configure Routing:** Set **Name** as you like and leave other fields as they are and click on Next Register Targets.
+    ![Load Balancer Step 4](/repo_screenshoots/step_3/load_balancer_step_4.png)
   * **Step 2.3.5 Register Targets:** Under **Instances** click on **Your Running Instance** and click on **Add To Registered**.
+    ![Load Balancer Step 5](/repo_screenshoots/step_3/load_balancer_step_5.png)
+  * **Step 2.3.6 Review:** Review all the settings you added
+    ![Load Balancer Step 6](/repo_screenshoots/step_3/load_balancer_step_6.png)
+    ![Load Balancer Step 7](/repo_screenshoots/step_3/load_balancer_step_7.png)
 
 * ***Step 2.4: Configure Route53 for HTTPs Again***
   * Goto **Services** > **Route53**.
@@ -153,6 +162,18 @@ ___
 * ***Step 2.5: Configure Route53 for HTTPs Again***
   * Now go to **EC2** > **Load Balancer** and select your load balancer instance and goto **Listener Tab**
   * Now **Edit HTTP:80** ,**Delete Record** under **Default Actions** and click on **Add Action**, Select **Redirect To** and select **HTTPS** and **port 443** and click on **TICK** button to add record. Now click on **Update**. Thats all.
+    ![Load Balancer Delete Record](/repo_screenshoots/step_3/remove-loadbalance-default-record-1.png)
+    ![Load Balancer Delete Record 2](/repo_screenshoots/step_3/remove-loadbalance-default-record-2.png)
+
+* ***Step 2.6: Update Security Groups***
+  * Now go to **EC2** > **YOUR_INSTANCE** > **Security** Tab > Click Link Under **Security Groups**
+    ![Security Group Updating](/repo_screenshoots/step_3/security-groups-updation-https.png)
+  * **Update Inbound Rules** for this **Security Group**
+    ![Update Security Group](/repo_screenshoots/step_3/security-groups-updation-https-2.png)
+  * **Add HTTPS** inbound rule [ **Type** = **HTTPS**, **Source** = **Anywhere**]
+    ![Add Inbounds HTTPS](/repo_screenshoots/step_3/security-groups-updation-https-3.png)
+
+
 
 * **Note:** After shifting to HTTPs you will notice that **CSS**, **Images** and all other **Resources crashes**. because all resources are still getting **http://** link to fix this 
   * Open your laravel application code and goto **AppServiceProvider** and in **boot()** method add this line
