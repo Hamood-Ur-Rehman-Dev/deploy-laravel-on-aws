@@ -112,7 +112,7 @@ ___
 ___
 
 ## Step 3: SSL Certificate (HTTPs)
-* ***Step 2.1: Create Certificate***
+* ***Step 3.1: Create Certificate***
   * Goto **Services** > **Certificate Manager**.
   * Under **Provision Certificate** click on **Getting Started**.
     ![Certificate Manager](/repo_screenshoots/step_3/certificate_manager.png)
@@ -131,41 +131,43 @@ ___
     * After status changed it will look something like this
       ![Certificate Verified](/repo_screenshoots/step_3/certificate-cleared.png)
   
-* ***Step 2.2: Configure Route53 for HTTPs***
+* ***Step 3.2: Configure Route53 for HTTPs***
   * Goto **Services** > **Route53**.
   * Create another **CNAME Record**, paste CNAME you copied without **YOUR_DOMAIN** and select **Record Type** ***CNAME-Routes traffic to another domain name and to some AWS Resources***  and toggle ***Alias switch*** and ***Set Alias to another record in this hosted zone*** next choose region and in last ***Choose Record*** ***YOUR_DOMAIN_NAME*** and click on Create Record.
     ![HTTPS CNAME Record](/repo_screenshoots/step_3/CNAME_HTTPs.png)
 
-* ***Step 2.3: Create Load Balancer***
+* ***Step 3.3: Create Load Balancer***
   * Goto **Services** > **EC2** > In Side Nav **Load Balancers**.
   * Click on **Create Load Balancer** and on next screen **Application Load Balancer** section click on **Create**.
     ![Load Balancer](/repo_screenshoots/step_3/load_balancer_page.png)
-  * **Step 2.3.1:** will be some basic configuration like **Name**, **Listener** & **Availability Zones**.
+  * **Step 3.3.1:** will be some basic configuration like **Name**, **Listener** & **Availability Zones**.
     ![Load Balancer Step 1](/repo_screenshoots/step_3/load_balancer_step_1.png)
     ![Load Balancer Step 1_1](/repo_screenshoots/step_3/load_balancer_step_1_1.png)
-  * **Step 2.3.2 Configure Security Settings:** From drop-down of **Certificate name** select **Your Certificate** you created in last step.
+  * **Step 3.3.2 Configure Security Settings:** From drop-down of **Certificate name** select **Your Certificate** you created in last step.
     ![Load Balancer Step 2](/repo_screenshoots/step_3/load_balancer_step_2.png)
-  * **Step 2.3.3 Configure Security Groups:** Select **application security** groups.
+  * **Step 3.3.3 Configure Security Groups:** Select **application security** groups.
     ![Load Balancer Step 3](/repo_screenshoots/step_3/load_balancer_step_3.png)
-  * **Step 2.3.4 Configure Routing:** Set **Name** as you like and leave other fields as they are and click on Next Register Targets.
+  * **Step 3.3.4 Configure Routing:** Set **Name** as you like and leave other fields as they are and click on Next Register Targets.
     ![Load Balancer Step 4](/repo_screenshoots/step_3/load_balancer_step_4.png)
-  * **Step 2.3.5 Register Targets:** Under **Instances** click on **Your Running Instance** and click on **Add To Registered**.
+  * **Step 3.3.5 Register Targets:** Under **Instances** click on **Your Running Instance** and click on **Add To Registered**.
     ![Load Balancer Step 5](/repo_screenshoots/step_3/load_balancer_step_5.png)
-  * **Step 2.3.6 Review:** Review all the settings you added
+  * **Step 3.3.6 Review:** Review all the settings you added
     ![Load Balancer Step 6](/repo_screenshoots/step_3/load_balancer_step_6.png)
     ![Load Balancer Step 7](/repo_screenshoots/step_3/load_balancer_step_7.png)
 
-* ***Step 2.4: Configure Route53 for HTTPs Again***
+* ***Step 3.4: Configure Route53 for HTTPs Again***
   * Goto **Services** > **Route53**.
   * Create another **A Record**, Leave **Name** **Empty** and set **Record Type** to **A-Route Traffic to an IPv4 address and some AWS Resources**. Check **Alias toggle** button. And select **Alias to Application and Classic Load Balancer** and next set **Your Region** that will show you available Load Balancers for that region select the **Load balancer you created** and Click **Create Record**
 
-* ***Step 2.5: Configure Route53 for HTTPs Again***
+* ***Step 3.5: Configure Route53 for HTTPs Again***
   * Now go to **EC2** > **Load Balancer** and select your load balancer instance and goto **Listener Tab**
-  * Now **Edit HTTP:80** ,**Delete Record** under **Default Actions** and click on **Add Action**, Select **Redirect To** and select **HTTPS** and **port 443** and click on **TICK** button to add record. Now click on **Update**. Thats all.
+  * Under **Default Actions** and click on **Add Action**, Select **Redirect To** and select **HTTPS** and **port 443** and click on **TICK** button to add record. Now click on **Update**. Thats all.
+  * After Adding **HTTPS** now its time to update **HTTP:80** so that any traffic that come to HTTP will automatically redirect to **HTTPS:443**
     ![Load Balancer Delete Record](/repo_screenshoots/step_3/remove-loadbalance-default-record-1.png)
     ![Load Balancer Delete Record 2](/repo_screenshoots/step_3/remove-loadbalance-default-record-2.png)
+    ![Load Balancer Delete Record 3](/repo_screenshoots/step_3/remove-loadbalance-default-record-3.png)
 
-* ***Step 2.6: Update Security Groups***
+* ***Step 3.6: Update Security Groups***
   * Now go to **EC2** > **YOUR_INSTANCE** > **Security** Tab > Click Link Under **Security Groups**
     ![Security Group Updating](/repo_screenshoots/step_3/security-groups-updation-https.png)
   * **Update Inbound Rules** for this **Security Group**
