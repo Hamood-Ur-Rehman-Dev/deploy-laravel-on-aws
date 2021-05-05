@@ -157,7 +157,15 @@ ___
 
 * ***Step 3.4: Configure Route53 for HTTPs Again***
   * Goto **Services** > **Route53**.
-  * Create another **A Record**, Leave **Name** **Empty** and set **Record Type** to **A-Route Traffic to an IPv4 address and some AWS Resources**. Check **Alias toggle** button. And select **Alias to Application and Classic Load Balancer** and next set **Your Region** that will show you available Load Balancers for that region select the **Load balancer you created** and Click **Create Record**
+  * If there is no **A Record** Create another **A Record** otherwise edit already listed **A Record** and do as following, 
+    * Leave **Name** **Empty** and 
+    * set **Record Type** to **A-Route Traffic to an IPv4 address and some AWS Resources**. 
+    * Check **Alias toggle** button. And 
+      * select **Alias to Application and Classic Load Balancer** and 
+      * next set **Your Region** that will show you available Load Balancers for that region 
+      * select the **Load balancer you created** and Click **Create Record**
+  * After completing above steps you will your final **Routes53** records look something like this **(Note Total 5 records/entries)**
+    ![Final View Of Route 53](/repo_screenshoots/step_3/final_shot_of_route53.png)
 
 * ***Step 3.5: Configure Route53 for HTTPs Again***
   * Now go to **EC2** > **Load Balancer** and select your load balancer instance and goto **Listener Tab**
