@@ -188,3 +188,13 @@ ___
 * **Note:** After shifting to HTTPs you will notice that **CSS**, **Images** and all other **Resources crashes**. because all resources are still getting **http://** link to fix this 
   * Open your laravel application code and goto **AppServiceProvider** and in **boot()** method add this line
     * *``\URL::forceScheme(‘https’);``*
+
+## Step 4: Configure Email
+* ***Step 4.1: Update Route53***
+  * Now Goto **Services** > **Route53**
+    * Just add these records **TXT**, **MX**, **SRV** and **CNAME**. You can get these records from your godaddy account.
+    * for **TXT**, leave name blank and add values.
+    * for **MX**, same, leave name blank and add values.
+    * for **SRV**, in name add **@**, and in values add in following order [Priority] [Weight] [Port] [Target]
+    for **CNAME**, add **email** in name, and in value add respective value.
+  ![Final View Of Route 53 After Email](/repo_screenshoots/step_4/email_configuration.png)
